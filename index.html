@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Club de Tennis de Table</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header avec logo -->
+        <header class="header">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo du club" class="logo-img">
+            </div>
+        </header>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <!-- Colonne gauche -->
+            <div class="left-column">
+                <!-- Derniers résultats -->
+                <div class="card">
+                    <h2 class="card-title">Derniers résultats</h2>
+                    <div class="results-container">
+                        <div class="result-slide active" id="result-slide">
+                            <div class="main-result">
+                                <span class="team1" id="team1">Saint-Pierre A</span>
+                                <span class="score" id="score">13 - 3</span>
+                                <span class="team2" id="team2">Libramont D</span>
+                            </div>
+                            <div class="player-results" id="player-results">
+                                <div class="player-result">
+                                    <span class="player-name">Denis</span>
+                                    <span class="player-score">3 victoires</span>
+                                </div>
+                                <div class="player-result">
+                                    <span class="player-name">Antoine</span>
+                                    <span class="player-score">4 victoires</span>
+                                </div>
+                                <div class="player-result">
+                                    <span class="player-name">Rémi</span>
+                                    <span class="player-score">3 victoires</span>
+                                </div>
+                                <div class="player-result">
+                                    <span class="player-name">Benja</span>
+                                    <span class="player-score">3 victoires</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Joueur du mois -->
+                <div class="card">
+                    <h2 class="card-title">Joueur du mois (septembre)</h2>
+                    <div class="player-of-month">
+                        <div class="player-photo">
+                            <div class="photo-placeholder" id="player-photo"></div>
+                        </div>
+                        <div class="player-info">
+                            <h3 class="player-name" id="player-name">Antoine Guebs</h3>
+                            <div class="player-stats">
+                                <div class="stat">
+                                    <span class="stat-value" id="victories">12 victoires</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value green" id="performances">5 perfs</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value green" id="points">+ 64 points</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne centrale -->
+            <div class="middle-column">
+                <!-- Matchs du jour -->
+                <div class="section">
+                    <h2 class="section-title">Matchs du jour</h2>
+                    <div class="matches-list" id="matches-list">
+                        <div class="match-item">Saint-Pierre A - Ochamps A</div>
+                        <div class="match-item">Libramont E - Saint-Pierre B</div>
+                        <div class="match-item">Saint-Pierre A - Ochamps A</div>
+                        <div class="match-item">Libramont E - Saint-Pierre B</div>
+                        <div class="match-item">Saint-Pierre A - Ochamps A</div>
+                        <div class="match-item">Libramont E - Saint-Pierre B</div>
+                    </div>
+                </div>
+
+                <!-- Meilleures performances -->
+                <div class="section">
+                    <h2 class="section-title">Meilleures progressions du mois</h2>
+                    <div class="performances-list" id="performances-list">
+                        <div class="performance-item">
+                            <span class="player-name">Florian Vincent</span>
+                            <span class="points green">+ 36 points</span>
+                        </div>
+                        <div class="performance-item">
+                            <span class="player-name">Mathis Jacoby</span>
+                            <span class="points green">+ 36 points</span>
+                        </div>
+                        <div class="performance-item">
+                            <span class="player-name">Rémi Vuidar</span>
+                            <span class="points green">+ 36 points</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Interface d'administration (cachée par défaut) -->
+        <div class="admin-panel" id="admin-panel">
+            <h3>Administration</h3>
+            <div class="admin-section">
+                <h4>Derniers résultats</h4>
+                <div class="form-group">
+                    <label>Équipe 1:</label>
+                    <select id="admin-team1">
+                        <option value="Saint-Pierre A">Saint-Pierre A</option>
+                        <option value="Saint-Pierre B">Saint-Pierre B</option>
+                        <option value="Saint-Pierre C">Saint-Pierre C</option>
+                        <option value="Saint-Pierre D">Saint-Pierre D</option>
+                        <option value="Saint-Pierre E">Saint-Pierre E</option>
+                        <option value="Saint-Pierre F">Saint-Pierre F</option>
+                        <option value="Saint-Pierre G">Saint-Pierre G</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Score équipe 1:</label>
+                    <input type="number" id="admin-score1" value="13" min="0" max="16">
+                </div>
+                <div class="form-group">
+                    <label>Score équipe 2:</label>
+                    <input type="number" id="admin-score2" value="3" min="0" max="16">
+                </div>
+                <div class="form-group">
+                    <label>Équipe 2:</label>
+                    <input type="text" id="admin-team2" value="Libramont D">
+                </div>
+                <button onclick="updateResults()">Mettre à jour</button>
+            </div>
+            
+            <div class="admin-section">
+                <h4>Joueur du mois</h4>
+                <div class="form-group">
+                    <label>Nom:</label>
+                    <input type="text" id="admin-player-name" value="Antoine Guebs">
+                </div>
+                <div class="form-group">
+                    <label>Victoires:</label>
+                    <input type="number" id="admin-victories" value="12">
+                </div>
+                <div class="form-group">
+                    <label>Performances:</label>
+                    <input type="number" id="admin-performances" value="5">
+                </div>
+                <div class="form-group">
+                    <label>Points:</label>
+                    <input type="number" id="admin-points" value="64">
+                </div>
+                <button onclick="updatePlayerOfMonth()">Mettre à jour</button>
+            </div>
+            
+            <button onclick="toggleAdmin()" class="close-admin">Fermer</button>
+        </div>
+
+        <!-- Bouton d'administration -->
+        <a class="admin-toggle" id="admin-toggle" href="admin.html" title="Administration">⚙️</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Club Saint-Pierre</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-page { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .admin-card { background: #fff; color: #333; border-radius: 12px; padding: 20px; }
+        .admin-card h2 { margin-bottom: 12px; }
+        .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .admin-row input, .admin-row select, .admin-row textarea { padding: 10px; border-radius: 6px; border: 1px solid #ddd; }
+        .admin-actions { display: flex; gap: 10px; margin-top: 10px; }
+        .btn { background:#ff6b35; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; }
+        .btn.secondary { background:#666; }
+        .muted { color:#777; font-size: 0.9em; }
+        .list { display:flex; flex-direction:column; gap:8px; }
+        .row { display:flex; gap:8px; align-items:center; }
+        .row input { width:100%; }
+        .score { width:64px; }
+        .badge { background:#eee; padding:2px 8px; border-radius:12px; font-size:0.85em; }
+        .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+        .link { color:#fff; text-decoration:none; }
+    </style>
+</head>
+<body style="background:#2c2c2c;color:#fff;">
+    <div class="admin-page">
+        <div class="topbar">
+            <h1>Administration</h1>
+            <div style="display:flex; gap:8px; align-items:center;">
+                <button class="btn secondary" id="export-json">Exporter JSON</button>
+                <label class="btn secondary" for="import-json-input">Importer JSON</label>
+                <input id="import-json-input" type="file" accept="application/json" style="display:none;">
+                <a class="btn" href="index.html">← Retour à l'affichage</a>
+            </div>
+        </div>
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h2>Derniers résultats (rotation A→G)</h2>
+                <div id="teams-editor" class="list"></div>
+                <div class="muted">Chaque équipe doit avoir 4 joueurs. Le score total doit faire 16.</div>
+                <div class="admin-actions">
+                    <button class="btn" id="save-teams">Sauvegarder</button>
+                    <button class="btn secondary" id="reset-teams">Réinitialiser</button>
+                </div>
+            </div>
+            <div class="admin-card">
+                <h2>Matchs du jour</h2>
+                <div id="matches-editor" class="list"></div>
+                <div class="admin-actions">
+                    <button class="btn" id="add-match">Ajouter un match</button>
+                    <button class="btn" id="save-matches">Sauvegarder</button>
+                </div>
+            </div>
+            <div class="admin-card">
+                <h2>Joueur du mois</h2>
+                <div class="row">
+                    <input id="adm-player-name" placeholder="Nom">
+                    <select id="adm-player-gender">
+                        <option value="H">Homme</option>
+                        <option value="F">Femme</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <input id="adm-player-vict" type="number" min="0" placeholder="Victoires">
+                    <input id="adm-player-perf" type="number" min="0" placeholder="Perfs">
+                    <input id="adm-player-points" type="number" placeholder="Points">
+                </div>
+                <div class="row">
+                    <input id="adm-player-month" placeholder="Mois (ex: septembre)">
+                </div>
+                <div class="admin-actions">
+                    <button class="btn" id="save-player">Sauvegarder</button>
+                </div>
+            </div>
+            <div class="admin-card">
+                <h2>Meilleures perfs du mois</h2>
+                <div id="perfs-editor" class="list"></div>
+                <div class="admin-actions">
+                    <button class="btn" id="add-perf">Ajouter</button>
+                    <button class="btn" id="save-perfs">Sauvegarder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
+
